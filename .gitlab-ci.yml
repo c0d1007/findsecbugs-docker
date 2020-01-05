@@ -20,7 +20,7 @@ Prepare FindSecBugs:
 Docker Build:
   stage: "Deploy"
   variables:
-    DOCKER_IMAGE: "shibme/findsecbugs" 
+    DOCKER_IMAGE: "shibme/findsecbugs-docker" 
   script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker build -t $DOCKER_IMAGE .

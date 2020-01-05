@@ -23,4 +23,4 @@ rm -f $ASSET_NAME
 curl -O -J -L -H "Accept: application/octet-stream" "$API_URL/releases/assets/$ASSET_ID$GITHUB_TOKEN_PARAMETER"
 unzip -o $ASSET_NAME -d findsecbugs
 rm -f $ASSET_NAME
-#sed -i 's/java -cp/java -Xmx8g -XX:-UseGCOverheadLimit -cp/g' findsecbugs/findsecbugs.sh
+sed -i 's/java -cp/java -Xmx8g -XX:-UseGCOverheadLimit -cp/g' findsecbugs/findsecbugs.sh
