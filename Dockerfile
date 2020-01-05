@@ -5,3 +5,4 @@ COPY run-findsecbugs.sh /findsecbugs/run-findsecbugs.sh
 RUN chmod +x /findsecbugs/run-findsecbugs.sh
 RUN ln -s /findsecbugs/run-findsecbugs.sh /bin/findsecbugs
 WORKDIR /workspace
+CMD findsecbugs "$@"
