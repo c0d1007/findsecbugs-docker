@@ -1,0 +1,1 @@
+bash /findsecbugs/findsecbugs.sh "$@"

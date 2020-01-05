@@ -1,0 +1,30 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - "Build"
+  - "Deploy"
+
+Prepare FindSecBugs:
+  stage: "Build"
+  image: ubuntu
+  script:
+    - apt-get update && apt-get install curl jq zip -y
+    - sh prepare-findsecbugs.sh
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - findsecbugs
+
+Docker Build:
+  stage: "Deploy"
+  variables:
+    DOCKER_IMAGE: "shibme/findsecbugs" 
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker build -t $DOCKER_IMAGE .
+    - docker push $DOCKER_IMAGE
+    - docker logout
+  only:
+    - master
